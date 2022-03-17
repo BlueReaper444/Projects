@@ -1,0 +1,18 @@
+<h2 id="Wellcome"></h2>
+<a class="userButton" style="background-color: #4CAF50;" id="Post" href="/post" >Post</a>
+<a class="userButton" style="background-color: #f44336;;" id="Delete" href="/deletePost" >Delete Post</a>
+
+<script>
+    var decodedCookie=decodeURIComponent(document.cookie);
+    var cookie = decodedCookie.split(';');
+    console.log(cookie);
+    for (let i=0;i<cookie.length;++i){
+        console.log(cookie[i]);
+        if(cookie[i].substring(0,5)=="name="){
+            var x = document.getElementById("Wellcome");
+            x.innerHTML = "Bine ai venit, " + cookie[i].substring(5,cookie[i].length) +"!";
+
+            break;
+        }
+    }
+</script>

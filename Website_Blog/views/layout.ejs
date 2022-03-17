@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+        <title>Warrior Library</title>
+        <meta charset=utf-8>
+    </head>
+    <body >
+        <header>
+            <div class="topnav" id="myTopnav">
+                <a id="Home" href="/" class="active">Home</a>
+                <a id="Contact" href="/contact">Contact</a>
+                <a id="User" href="/user">User</a>
+                <a id="Autentification" href="/autentificare"></a>
+                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                  <img src="/public/images/menu.png" alt="|||" style="width:auto;">
+                </a>
+
+                <p id="LogedIn" style="text-align: right; color: #F2F3F4"></p>
+            </div>
+            <script>
+            function myFunction() {
+                var x = document.getElementById("myTopnav");
+                if (x.className === "topnav") {
+                  x.className += " responsive";
+                } else {
+                  x.className = "topnav";
+                }
+              } 
+            </script>
+            <script>
+                var decodedCookie=decodeURIComponent(document.cookie);
+                var cookie = decodedCookie.split(';');
+                let ok=true;
+                for (let i=0;i<cookie.length;++i){
+                    if(cookie[i].substring(0,5)=="name="){
+                        var x = document.getElementById("LogedIn");
+                        x.innerHTML = "Loged in as " + cookie[i].substring(5,cookie[i].length) +"!";
+                        document.getElementById("Autentification").textContent="LogOut";
+                        document.getElementById("Autentification").href="/logout";
+                        ok=false;
+                        break;
+                    }
+                }
+                if(ok==true){
+                    document.getElementById("Autentification").textContent="LogIn";
+                    document.getElementById("Autentification").href="/autentificare";
+                }
+            </script>
+        </header>
+
+        <main>
+            <%- body -%>
+        </main>
+
+        
+        <footer style="bottom:0px; position:fixed; width:100%; background:#F2F3F4;">
+            &copy;Warrior library.
+        </footer>
+    </body>
+</html>

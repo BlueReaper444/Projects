@@ -1,0 +1,29 @@
+<div style="float:initial">
+    <div class="header">
+        <H1>Welcome to Warrior Library</H1>
+    </div>
+    <div class="lefthome">
+    <% posts.forEach(function(post) {%>
+        <div class="homeposts">
+                <h2><%=post.PostTitle %></h2>
+                <img class="home_img" src="/images/<%=post.PostImagePath %>" alt=":( no Image available">
+                <p><%=String(post.PostDate).substr(0, 15); %> By <%=post.PostCreator %></p>
+                <pre><p><%=post.PostContent %>...</p></pre>
+                <form method="GET" action="posts/<%=post.PostTitle %>">
+                    <input type="submit" value="Read more"></input>
+                </form>
+        </div>
+        <% })%>
+    </div>
+    <div class="righthome">
+        <h3>Popular posts</h3>
+        <% populars.forEach(function(popular) {%>
+            <div class="homeposts">
+                <a href="posts/<%=popular.PostTitle %>"><%=popular.PostTitle %></a>
+                <img class="home_img" src="/images/<%=popular.PostImagePath %>" alt=":( no Image available">
+            </div>
+        <% })%>
+    </div>
+</div>
+
+

@@ -1,0 +1,36 @@
+<div class="row">
+    <div class="column">
+<form action="/verificare-autentificare" method="post">
+    
+    <font color="red"><h2 style="margin-left: 10px;" id="ErrorAu"></h2></font>
+    <script>
+        var decodedCookie=decodeURIComponent(document.cookie);
+        var cookie = decodedCookie.split(';');
+        console.log(cookie)
+        for (let i=0;i<cookie.length;++i){
+            console.log(cookie[i].substring(0,12))
+            if(cookie[i].substring(0,12)=="mesajEroare="){
+                var x = document.getElementById("ErrorAu");
+                x.innerHTML = cookie[i].substring(12,cookie[i].length);
+                break;
+            }
+        }
+    </script>
+
+    <label style="margin-left: 10px;">Username</label>
+    <br>
+    <input style="width:220px; margin-left: 10px;" type="text" name="username">
+    <br>
+    <label style="margin-left: 10px;">Password</label>
+    <br>
+    <input style="width:220px; margin-left: 10px;" type="password" name="password">
+    <br>
+    <input style="width:220px; margin-left: 10px;" type="submit" value="Log In"/>
+</form>
+</div>
+
+<div class="column">
+    
+</div> 
+    
+</div>

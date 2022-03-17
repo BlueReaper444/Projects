@@ -1,0 +1,101 @@
+<script>
+    function submit() {
+        console.log("title")
+        const postRequest= new XMLHttpRequest();
+        postRequest.open('POST','/do-post',true);
+        let formData = new FormData();
+
+        const title = document.querySelector('title').value;
+        formData.append('title',title);
+        console.log(title)
+        const content = document.querySelector('content').value;
+        formData.append('content',content);
+        console.log(content)
+
+        postRequest.onreadystatechange =function(){
+            if(postRequest.status==500){
+                alert('errorMessage');
+                return;
+            }
+            if(postRequest.readyState == 4 && postRequest.status == 200){
+                if(postRequest.responseText.includes('Error')){
+                    console.log(postRequest.responseText);
+                    alert('errorMessage');
+                    return;
+                }
+                console.log(JSON.parse(postRequest.responseText));
+                alert('success');
+
+            }
+        }
+        postRequest.send(formData);
+    }
+
+    /*function ImgPost(image,callback){
+        console.log(image)
+        $.ajax({
+            url: "/do-upload-image",
+            method: "POST",
+            data: new FormData(image),
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function(response){
+               var imagePathVar=response;
+               console.log(response);
+               callback(image,imagePathVar);
+            }
+        });
+        return false;
+    }*/
+    /*function doPost(form,imagePathVar){
+        //await ImgPost(form);
+        console.log(imagePathVar)
+        $.ajax({
+            url: "/do-post",
+            method: "POST",
+            data: {title: form.title.value, content: form.content.value, imagePath: imagePathVar},
+            success: function(response){
+                alert(response);
+            }
+        });
+        return false;
+    }
+    */
+</script>
+<H2>Add a new post</H2>
+<div class="AddPost">
+    <form method="POST" enctype=multipart/form-data action='/do-post'>
+    <div>
+        <label>Title</label>
+        <br>
+        <input type='text' name="title" placeholder="Post Title" required/>
+    </div>
+    <div>
+        <label>Upload Image</label>
+        <br>
+        <input type="file" name="image" required/>
+    </div>
+    <div>
+        <label>Category</label>
+        <br>
+        <input type='text' name="category" placeholder="Post Category" required/>
+    </div>
+    <div>
+        <label>Content</label>
+        <br>
+        <textarea style="height: 500px;"  name="content" placeholder="Content" required></textarea>
+    </div>
+    <div>
+        <label>Key Words(use #)</label>
+        <br>
+        <textarea style="height: 200px;"  name="keywords" placeholder="Post Key Words" required></textarea>
+    </div>
+    <div>
+        <label>Post Parent Blog</label>
+        <br>
+        <input type='text' name="parentblog" placeholder="Post Parent Blog" required/>
+    </div>
+    <input type="submit" value="Post"></input>
+    </form>
+</div>
