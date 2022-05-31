@@ -1,0 +1,18 @@
+create table posts (
+   PostDate DATE,
+   PostTitle VARCHAR(100) NOT NULL,
+   PostCategory VARCHAR(40) NOT NULL,
+   PostContent VARCHAR(3000) NOT NULL,
+   PostCreator VARCHAR(100) NOT NULL,
+   PostImagePath VARCHAR(100) NOT NULL,
+   PostKeywords VARCHAR(100) NOT NULL,
+   PostParentBlog VARCHAR(100) NOT NULL,
+   PostViews INT NOT NULL,
+PRIMARY KEY (PostTitle)
+);
+create table users (
+   UserName VARCHAR(40) NOT NULL,
+   UserPassword VARCHAR(40) NOT NULL,
+   UserDescription VARCHAR(3000) NOT NULL,
+PRIMARY KEY (UserName)
+);
